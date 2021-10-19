@@ -5,15 +5,15 @@
 
 #define MIDI_USART_BAUDRATE 31250
 
-/**
- * datasheet formulas on page 147
- * 31250 = 1e6 / (16 * (UBRR + 1))
- * 31250 * (16 * (UBRR + 1)) = 1e6
- * 31250 * (16 * UBRR + 16) = 1e6
- * 500000 * UBRR + 500000 = 1e6
- * 500000 * UBRR = 500000
- * UBRR = 1
- */
+// see datasheet for formula
+// UBRR0 = f_clk / (16 * MIDI_USART_BAUDRATE) - 1
+#ifdef ARDUINO_AVR_CIRCUIT_PLAYGROUND_CLASSIC
+// @ 8 MHz - x1 speed = 15, x2 speed = 31
+#define MIDI_USART_UBRR 31
+#else
+// 168 @ 1 MHz
+#define MIDI_USART_UBRR 1
+#endif
 
 void USART_init();
 void USART_send(uint8_t data);

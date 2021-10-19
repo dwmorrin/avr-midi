@@ -6,6 +6,11 @@
  * 
  * Note off: 0x80
  * Note on:  0x90
+ * 
+ * Wiring note: 
+ * 5 pin DIN #s go 1-4-2-5-3
+ * uC Vcc should go to 4 (MIDI current source)
+ * Tx pin should go to 5 (MIDI current sink)
  */
 
 #include <stdint.h>
